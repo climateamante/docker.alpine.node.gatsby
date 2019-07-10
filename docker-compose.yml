@@ -1,0 +1,27 @@
+# docker-enginge: 18.09.2+
+# docker-compose.yml preferes spaces over tabs
+
+version: '3.3'
+
+services:
+
+  docker.alpine.node.gatsby.app:
+    container_name: alpine.node.gatsby.app.container
+    volumes:
+        - ./app:/var/www/app/
+    build:
+        labels:
+            alpine.node.gatsby.app.description: "template for building and developing a gatsby workflow"
+
+        context: ./
+        dockerfile: ./dockerfiles/docker.alpine.node.gatsby.app.sh
+
+    command: "/bin/ash"
+
+    image: climateamante/alpine.node.gatsby:latest
+
+    expose:
+        - 8000
+
+    ports:
+        - 80:8000
